@@ -1,4 +1,4 @@
 <header class="bg-slate-100 px-4 py-3 shadow-md flex justify-between items-center">
-  <h1>{{title()}}</h1>
-  <app-primary-button [label]="cart()" (btnClicked)="showBtnClicked()" />
+  <h1>Store App</h1>
+  <app-primary-button [label]="'Cart ('+ cartService.cart().count +')'" (btnClicked)="showBtnClicked()" />
 </header>

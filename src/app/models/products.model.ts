@@ -5,3 +5,13 @@ export type Product = {
   image: string;
   stock?: number;
 };
+
+type CartProduct = Omit<Product, 'stock'> & {
+  quantity: number;
+};
+
+export type Cart = {
+  products: CartProduct[];
+  count: number;
+  total: number;
+};
