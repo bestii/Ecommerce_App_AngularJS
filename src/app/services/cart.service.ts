@@ -5,7 +5,7 @@ import { Cart, Product } from '../models/products.model';
   providedIn: 'root',
 })
 export class CartService {
-  cart = signal<Cart>({ products: [], count: 0, total: 0 });
+  cart = signal<Cart>({ products: [], count: 0 });
 
   constructor() {}
 
@@ -23,6 +23,22 @@ export class CartService {
         count,
         products: [...products, { ...product, quantity: 1 }],
       };
+    });
+  }
+
+  removeFromCart(productId: number) {
+    this.cart.update((cart) => {
+      const products = cart.products;
+      const productInCart = products.find((p) => p.id === productId);
+      if (productInCart) {
+        const count = cart.count - productInCart.quantity;
+        return {
+          ...cart,
+          count,
+          products: products.filter((p) => p.id !== productId),
+        };
+      }
+      return cart;
     });
   }
 }

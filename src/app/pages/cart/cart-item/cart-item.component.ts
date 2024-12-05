@@ -1,5 +1,6 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { ButtonComponent } from '../../../components/button/button.component';
+import { CartProduct } from '../../../models/products.model';
 import { CartService } from '../../../services/cart.service';
 
 @Component({
@@ -10,4 +11,5 @@ import { CartService } from '../../../services/cart.service';
 })
 export class CartItemComponent {
   cartService = inject(CartService);
+  product = input.required<CartProduct>();
 }
